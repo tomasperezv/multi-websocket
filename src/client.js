@@ -27,22 +27,6 @@ const MultiWebsocket = (function(namespace, config, eventBus) {
   };
 
   /**
-   * Define the current API methods. They are implemented by the different service
-   * instances. e.g. one service could provide entry points for some of them,
-   * and that could evolve dynamically thanks to the service discovery layer.
-   *
-   * @type {Object} methods
-   * @private
-   */
-  const methods = {
-    STOPS: '/stops/',
-    ROUTE: '/route/',
-    DEPARTURES: '/departures/',
-    NOTIFICATIONS: '/notifications/',
-    AUTOCOMPLETE: '/autocomplete/'
-  };
-
-  /**
    * Used to store the information taken from the service discovery
    * to identify which websocket to use from the connections pool.
    *
@@ -280,7 +264,6 @@ const MultiWebsocket = (function(namespace, config, eventBus) {
   };
 
   namespace.Client = new Client(); // eslint-disable-line no-param-reassign
-  namespace.Client.Methods = methods; // eslint-disable-line no-param-reassign
 
   return namespace;
 }(MultiWebsocket || {}, MultiWebsocket.Config, MultiWebsocket.EventBus));
