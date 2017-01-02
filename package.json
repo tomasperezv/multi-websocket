@@ -2,7 +2,7 @@
   "name": "@tomasperezv/multi-websocket",
   "version": "0.3.0",
   "description": "Access to multiple webservices over the same websocket connection",
-  "main": "src/multi-websocket-client.js",
+  "main": "src/client.js",
   "directories": {
     "test": "test"
   },
