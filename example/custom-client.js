@@ -1,4 +1,5 @@
-/* global WebSocket */
+/* global MultiWebsocket */
+
 'use strict';
 
 /**
@@ -10,7 +11,7 @@
  */
 
 /**
- * This configuration object defines the current API methods. 
+ * This configuration object defines the current API methods.
  * They are implemented by the different service
  * instances. e.g. one service could provide entry points for some of them,
  * and that could evolve dynamically thanks to the service discovery layer.
@@ -69,9 +70,9 @@ client.connect();
 client.onReady(() => {
   window.setInterval(() => {
     client.helloWorld()
-      .then((data) => { console.log(data); });
+      .then((data) => { console.log(data); }); // eslint-disable-line no-console
 
     client.autocomplete('test-')
-      .then((data) => { console.log(data); });
+      .then((data) => { console.log(data); }); // eslint-disable-line no-console
   }, 1000);
 });

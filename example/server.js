@@ -1,4 +1,3 @@
-/*jslint node: true */
 'use strict';
 
 const SilexJS = require('@tomasperezv/silex.js')('example');
@@ -17,7 +16,7 @@ SilexJS.App.get('/autocomplete/{query,messageId}', (request) => {
     const n = 5;
     let suffix = '';
     for (let i = 0; i < n; i++) {
-      let pos = Math.floor(Math.random() * alpha.length);
+      const pos = Math.floor(Math.random() * alpha.length);
       suffix += alpha[pos];
     }
 
@@ -45,7 +44,6 @@ SilexJS.App.get('/helloworld/{messageId}', (request) => {
  */
 SilexJS.App.get('/discover/', () => {
   const promise = new Promise((resolve) => {
-    const serviceDiscoveryData = JSON.stringify(SilexJS.config.services);
     resolve(SilexJS.config.services);
   });
 
