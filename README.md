@@ -14,6 +14,15 @@ and maintainability.
 
 On events of connection lost the `MultiWebsocket` object is able to recover and retry to the Websocket Gateway.
 
+## Service Discovery
+
+As stated previously the client will perform a XMLHttpRequest call to a pre-defined discovery service that will return
+the services and Websocket Gateway mapping.
+
+This allows us to decouple the client side from the specific service instances, supporting
+potential improvements like adding more instances of a specific service,
+if needed without having to require a client side restart.
+
 ## Example
 
 An example project is located at the `example` folder:
