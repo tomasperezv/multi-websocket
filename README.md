@@ -12,6 +12,8 @@ through the `MultiWebsocket.Client` object will be routed automatically.
 `MultiWebsocket.Client` exposes an interface based on `Promise` in order to ease code readability
 and maintainability.
 
+On events of connection lost the `MultiWebsocket` object is able to recover and retry to the Websocket Gateway.
+
 ## Example
 
 An example project is located at the `example` folder:
