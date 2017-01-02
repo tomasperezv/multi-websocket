@@ -3,6 +3,7 @@
 
  * @namespace MultiWebsocket
  */
+
 'use strict';
 
 module.exports = {
