@@ -1,4 +1,5 @@
 /* global WebSocket */
+'use strict';
 
 /**
  * This file implements a basic example of how to extend the MultiWebsocket.Client
@@ -18,7 +19,7 @@
  * @private
  */
 const methods = {
-  HELLO_WORLD: '/hello-world/',
+  HELLO_WORLD: '/helloworld/',
   AUTOCOMPLETE: '/autocomplete/'
 };
 
@@ -26,10 +27,17 @@ const methods = {
  * @constructor
  */
 const ExampleClient = function() {
+  /**
+   * @type {Object} config
+   */
+  this.config = {
+    'service-discovery-url': 'http://localhost:7007/discover/'
+  };
+
   MultiWebsocket.Client.call(this);
 };
 
-ExampleClient.prototype = Object.extend(MultiWebsocket.Client);
+ExampleClient.prototype = Object.create(MultiWebsocket.Client.prototype);
 
 /**
  * @method helloWorld
@@ -37,7 +45,7 @@ ExampleClient.prototype = Object.extend(MultiWebsocket.Client);
  * @public
 */
 ExampleClient.prototype.helloWorld = function() {
-  return this.callService(methods.HELLO_WORLD);
+  return this.callService(methods.HELLO_WORLD, {});
 };
 
 /**
@@ -50,15 +58,20 @@ ExampleClient.prototype.helloWorld = function() {
  * @public
  */
 ExampleClient.prototype.autocomplete = function(query) {
-  return callService(methods.AUTOCOMPLETE, query);
+  return this.callService(methods.AUTOCOMPLETE, { query });
 };
 
 // Example's code, connect to the client and perform requests to the
 // 2 services.
-ExampleClient.connect()
-.then(() => {
-  console.log(ExampleClient.helloWorld());
-})
-.catch((e) => {
-  console.log(e);
+const client = new ExampleClient();
+client.connect();
+
+client.onReady(() => {
+  window.setInterval(() => {
+    client.helloWorld()
+      .then((data) => { console.log(data); });
+
+    client.autocomplete('test-')
+      .then((data) => { console.log(data); });
+  }, 1000);
 });

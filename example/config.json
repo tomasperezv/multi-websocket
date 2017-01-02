@@ -1,0 +1,10 @@
+{
+  "services": {
+    "example": {
+      "methods": ["/helloworld/", "/autocomplete/", "/discovery/"],
+      "host": "localhost",
+      "http-port": 7007,
+      "websocket-port": 7008
+    }
+  }
+}

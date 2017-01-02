@@ -1,0 +1,16 @@
+{
+  "name": "multi-websocket-example",
+  "version": "1.0.0",
+  "description": "An example that uses the multi-websocket client",
+  "scripts": {
+    "start": "node server.js",
+    "build": "webpack",
+    "server": "webpack-dev-server --content-base dist/ --port 9999"
+  },
+  "dependencies": {
+    "@tomasperezv/silex.js": "^0.1.0",
+    "html-webpack-plugin": "^2.25.0",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
