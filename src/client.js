@@ -16,6 +16,7 @@
 'use strict';
 
 const EventBus = require('./event-bus');
+const Event = require('./event');
 
 /**
  * Listeners of the different methods.
@@ -77,7 +78,7 @@ const initWebSocket = (serviceId) => {
     }
 
     // Propagate a message so listeners are notified of the event
-    EventBus.trigger('service-response-complete', serviceId, pathId[messageId]);
+    EventBus.trigger(Event.RESPONSE_COMPLETE, serviceId, pathId[messageId]);
   };
 
   websocket.onopen = () => {
@@ -96,14 +97,14 @@ const initWebSocket = (serviceId) => {
     }
 
     // Let other parts of the application be notified about the connectivity problems.
-    EventBus.trigger('application-error', 'websocket-error', serviceId);
+    EventBus.trigger(Event.APPLICATION_ERROR, Event.Websocket.ERROR, serviceId);
   };
 
   websocket.onclose = () => {
     // Recycle the websocket so a new one is instantiated on the following method calls
     // This assures a graceful connection recovery on websocket disconnections.
     delete websocketPool[serviceId];
-    EventBus.trigger('application-error', 'websocket-closed', serviceId);
+    EventBus.trigger(Event.APPLICATION_ERROR, Event.Websocket.CLOSED, serviceId);
   };
 };
 
@@ -171,7 +172,7 @@ Client.prototype.callService = function(path, message) {
   pathId[randomId] = path;
 
   // Let app listeners to know about that we are initiating a service-call event
-  EventBus.trigger('service-call', methodServiceMap[path], path, message.messageId);
+  EventBus.trigger(Event.SERVICE_CALL, methodServiceMap[path], path, message.messageId);
 
   // Obtain the websocket from the pool of connections
   const websocket = getWebsocketFromPool(path);
@@ -263,7 +264,7 @@ Client.prototype.connect = function() {
       listener();
     });
   }).catch(() => {
-    EventBus.trigger('application-error', 'discovery', this.config['service-discovery-url']);
+    EventBus.trigger(Event.APPLICATION_ERROR, Event.DISCOVERY, this.config['service-discovery-url']);
   });
 };
 
