@@ -22,7 +22,7 @@ cd ./example
 npm install
 ```
 
-The previous instruction will installed the required dependencies, after that you must run the server:
+The previous instruction will install the required dependencies, after that you must run the server:
 
 ```bash
 npm run start-server
