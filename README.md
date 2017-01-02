@@ -6,10 +6,11 @@ accessed from the client-side transparently.
 Initially the client will perform a XMLHttpRequest to a discovery service that will be in charge of returning
 a mapping that will define how to access to the different webservices and the address of the websocket gateway.
 
-Once the service discovery is completed a websocket gateway is stablished and subsequent requests through the
-`MultiWebsocket.client` object will be routed automatically.
+Once the service discovery is completed a websocket gateway is stablished and subsequent requests
+through the `MultiWebsocket.Client` object will be routed automatically.
 
-`MultiWebsocket.client` exposes an interface based on `Promise` in order to ease code readability and maintainability.
+`MultiWebsocket.Client` exposes an interface based on `Promise` in order to ease code readability
+and maintainability.
 
 ## Example
 
